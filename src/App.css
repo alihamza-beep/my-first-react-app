@@ -1,0 +1,85 @@
+/* ===============================
+   SECTION 0: RESET & GLOBAL BODY STYLES (New)
+   =============================== */
+
+/* Default browser margin aur padding hatana zaroori hai */
+body {
+    margin: 0;
+    padding: 0;
+    /* Poori height lena taake content vertical center ho sake agar zaroorat ho */
+    min-height: 100vh; 
+    width: 100%;
+}
+
+/* ===============================
+   SECTION 1: ROOT & MAIN CONTAINER
+   =============================== */
+
+#root {
+  /* Page ki zyada se zyada width tay karein (ye theek hai) */
+  max-width: 1280px; 
+  /* Block element ko center karne ke liye */
+  margin: 0 auto; 
+  /* Padding den */
+  padding: 2rem;
+  /* Aapke content mein jo bhi text ho (jaise h1, p, waghera) usko center karne ke liye */
+  text-align: center; 
+}
+
+/* Yeh class kisi bhi chote section, jaise form, ko center karne ke liye use karen */
+.container-centered {
+    /* Form ki width kam rakhi hai */
+    max-width: 500px; 
+    
+    /* Block element ko center karne ke liye sab se zaroori property */
+    margin: 0 auto; 
+    
+    padding: 20px;
+    
+    /* Center root ke bawajood, form ke andar ke text ko left align karta hai */
+    text-align: left; 
+}
+
+/* ===============================
+   SECTION 2: LOGO & ANIMATIONS
+   =============================== */
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* ===============================
+   SECTION 3: UTILITY CLASSES
+   =============================== */
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
