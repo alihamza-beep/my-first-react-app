@@ -1,37 +1,35 @@
-// 1. Routes aur Route ko react-router-dom se import karna zaroori hai [cite: 19]
 import { Routes, Route } from "react-router-dom";
+import React from 'react';
 
-// Components imports (Jaise aapne kiye hain, lekin sahi naamon ke saath)
+// Layouts imports
 import Navbar from "./components/layouts/Navbar.jsx";
-import Footer from "./components/layouts/Footer.jsx"; // Footer ko main yahan rakhta hoon
-import HomePage from "./components/pages/HomePage.jsx"; // Home ko HomePage maan lete hain
-import AboutPage from "./components/pages/AboutPage.jsx"; // About ko AboutPage maan lete hain
-import ContactPage from "./components/pages/ContactPage.jsx"; // Contact ko ContactPage maan lete hain
-import PageNotFound from "./components/pages/PageNotFound"; // 404 page ke liye [cite: 23]
+import Footer from "./components/layouts/Footer.jsx";
 
-// Faqs view ko yahan import karne ki zaroorat nahi, woh HomePage ke andar use hoga.
-// import Faqs from "./components/views/homeViews/Faqs.jsx"; 
+// Basic Pages
+import HomePage from "./components/pages/Home.jsx";
+import AboutPage from "./components/pages/About.jsx";
+import ContactPage from "./components/pages/Contact.jsx";
+import PageNotFound from "./components/pages/PagesNotFound.jsx";
 
+// Auth Pages (Mene rasta theek kiya hai taake error na aaye)
+// Aapki screenshot ke mutabiq yeh files seedha 'pages' folder mein hain
+import Login from "./components/pages/Login.jsx"; 
+import SignUp from "./components/pages/SignUp.jsx";
 
 function App() {
   return (
     <>
-      {/* 2. Navbar aur Footer Routes se bahar rahenge taaki woh har page par dikhe [cite: 26] */}
       <Navbar />
 
-      {/* 3. <Routes> tag ke andar har URL ke liye <Route> define kiya jayega [cite: 27] */}
       <Routes>
-        
-        {/* Home Route: jab path "/" ho, tab HomePage component dikhe [cite: 28] */}
         <Route path="/" element={<HomePage />} />
-        
-        {/* About Route: jab path "/about" ho, tab AboutPage component dikhe [cite: 29] */}
         <Route path="/about" element={<AboutPage />} />
-        
-        {/* Contact Route: jab path "/contact" ho, tab ContactPage component dikhe [cite: 30] */}
         <Route path="/contact" element={<ContactPage />} />
-        
-        {/* Wildcard Route: Koi bhi URL match na hone par PageNotFound dikhe [cite: 31] */}
+
+        {/* 🔹 In routes ko add karne se Login/SignUp page khulega aur 404 nahi aayega */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
