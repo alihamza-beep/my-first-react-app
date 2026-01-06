@@ -1,29 +1,51 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext'; // AuthContext ko use karna hai
+import { useAuth } from '../AuthContext'; 
+import { db } from "../../firebaseConfig"; // Firestore db import karein
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export default function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, googleLogin } = useAuth(); // Auth functions nikaale
+  const { login, googleLogin } = useAuth(); 
   const navigate = useNavigate();
 
-  // Task 1: Email & Password Sign In [cite: 17]
+  // Task 2: User data ko Firestore mein save karne ka function [cite: 91, 93]
+  const saveUserToFirestore = async (user) => {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    // Agar user pehle se maujood nahi hai, tabhi save karein (No duplicates) 
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        uid: user.uid,
+        email: user.email,
+        role: "user", // Default role 'user' 
+        createdAt: new Date()
+      });
+    }
+  };
+
+  // Task 1: Email & Password Sign In [cite: 86]
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
-      navigate('/'); // Login ke baad home page par redirect [cite: 34]
+      const result = await login(email, password);
+      // User login ke baad Firestore mein save/check karein
+      await saveUserToFirestore(result.user);
+      navigate('/'); 
     } catch (error) {
       alert("Error: " + error.message);
     }
   };
 
-  // Task 1: Google Sign-In 
+  // Task 1: Google Sign-In [cite: 87]
   const handleGoogleSignIn = async () => {
     try {
-      await googleLogin();
-      navigate('/'); // Success par redirect
+      const result = await googleLogin();
+      // Google user ko Firestore mein save/check karein [cite: 92]
+      await saveUserToFirestore(result.user);
+      navigate('/'); 
     } catch (error) {
       alert("Google Login Failed");
     }
@@ -49,7 +71,6 @@ export default function LoginView() {
         <div className="bg-white shadow-lg rounded-2xl px-8 py-10 w-full max-w-md border border-gray-100">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Welcome Back</h2>
 
-          {/* Firebase Login Form */}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
@@ -97,12 +118,11 @@ export default function LoginView() {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
-          {/* Task 1: Google Sign-In Button  */}
           <button
             onClick={handleGoogleSignIn}
             className="w-full border border-gray-300 py-3 rounded-lg flex items-center justify-center hover:bg-gray-100 transition mb-4"
           >
-            <i className="bi bi-google text-red-500 text-xl mr-2"></i> Continue with Google
+            Continue with Google
           </button>
 
           <p className="text-center text-gray-700 mt-6">

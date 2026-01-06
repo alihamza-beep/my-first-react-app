@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { db } from "../../firebaseConfig";
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
+// 🔹 Auth context import kiya taake role check kiya ja sakay
+import { useAuth } from "../../AuthContext";
 
 export default function ViewSingleItem() {
   const { id } = useParams(); 
   const [item, setItem] = useState(null);
   const navigate = useNavigate();
+  // 🔹 Current user aur uski role details nikaali
+  const { user, role } = useAuth();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -14,7 +18,7 @@ export default function ViewSingleItem() {
         const docRef = doc(db, "products", id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setItem({ id: docSnap.id, ...docSnap.data() }); // ID aur data dono save karein
+          setItem({ id: docSnap.id, ...docSnap.data() }); 
         }
       } catch (error) {
         console.error("Error fetching item:", error);
@@ -23,13 +27,21 @@ export default function ViewSingleItem() {
     fetchItem();
   }, [id]);
 
-  // Task 2e: Delete Operation
+  // Task 2e: Delete Operation [cite: 38, 39]
   const handleDelete = async () => {
+    // 🔹 Security Check: Sirf Admin ya Item ka Creator hi delete kar sakay 
+    const isOwner = item?.userId === user?.uid;
+    const isAdmin = role === 'admin';
+
+    if (!(isAdmin || isOwner)) {
+      alert("Unauthorized! You don't have permission to delete this.");
+      return;
+    }
+
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         await deleteDoc(doc(db, "products", id));
         alert("Deleted Successfully!");
-        // Sahi path par navigate karein
         navigate('/view-all-items'); 
       } catch (error) {
         console.error("Error deleting document: ", error);
@@ -43,20 +55,24 @@ export default function ViewSingleItem() {
   return (
     <div className="container py-5">
       <div className="card shadow-sm border-0 p-4 bg-light">
-        {/* 'title' ko 'name' se replace kiya jo Firestore mein hai */}
         <h2 className="display-5 fw-bold">{item.name}</h2>
         <p className="h3 text-danger fw-bold">Rs. {item.price}</p>
         <p className="lead mt-4 text-muted">{item.description}</p>
         
         <div className="mt-5 d-flex gap-2">
-          {/* Edit path ko sahi kiya */}
-          <Link to={`/edit-item/${id}`} className="btn btn-warning px-4">
-            Edit Product
-          </Link>
-          
-          <button onClick={handleDelete} className="btn btn-danger px-4">
-            Delete Product
-          </button>
+          {/* 🔹 Role-Based Visibility: Buttons sirf Admin ya Owner ko dikhengi [cite: 109] */}
+          {(role === 'admin' || item.userId === user?.uid) && (
+            <>
+              {/* Edit path [cite: 35, 36] */}
+              <Link to={`/edit-item/${id}`} className="btn btn-warning px-4">
+                Edit Product
+              </Link>
+              
+              <button onClick={handleDelete} className="btn btn-danger px-4">
+                Delete Product
+              </button>
+            </>
+          )}
           
           <button onClick={() => navigate('/view-all-items')} className="btn btn-secondary px-4">
             Back to List
