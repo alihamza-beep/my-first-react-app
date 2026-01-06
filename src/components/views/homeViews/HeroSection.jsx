@@ -35,19 +35,19 @@ export default function HeroSection() {
       <div className="carousel-inner">
         {/* Path check karlein: /src/assets/... hamesha slash se shuru karen */}
         <div className="carousel-item active">
-          <img src="./src/assets/imgs/banner1.webp" className="d-block w-100" alt="Banner 1" />
+          <img src="./public/imgs/banner1.webp" className="d-block w-100" alt="Banner 1" />
         </div>
         <div className="carousel-item">
-          <img src="./src/assets/imgs/banner2.webp" className="d-block w-100" alt="Banner 2" />
+          <img src="./public/imgs/banner2.webp" className="d-block w-100" alt="Banner 2" />
         </div>
         <div className="carousel-item">
-          <img src="./src/assets/imgs/banner3.webp" className="d-block w-100" alt="Banner 3" />
+          <img src="./public/imgs/banner3.webp" className="d-block w-100" alt="Banner 3" />
         </div>
         <div className="carousel-item">
-          <img src="./src/assets/imgs/banner4.webp" className="d-block w-100" alt="Banner 4" />
+          <img src="./public/imgs/banner4.webp" className="d-block w-100" alt="Banner 4" />
         </div>
         <div className="carousel-item">
-          <img src="/src/assets/imgs/banner5.webp" className="d-block w-100" alt="Banner 5" />
+          <img src="./public/imgs/banner5.webp" className="d-block w-100" alt="Banner 5" />
         </div>
       </div>
 

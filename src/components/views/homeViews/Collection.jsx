@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function Collection() {
   const collections = [
-    { name: "MEIN AUR AMI", img: "/src/assets/imgs/Mein_aur_ami.webp" },
-    { name: "ROHANI", img: "/src/assets/imgs/Rohani.webp" },
-    { name: "AFSANA’25", img: "/src/assets/imgs/Afsana.webp" },
-    { name: "FESTIVES", img: "/src/assets/imgs/FESTIVE_1.webp" },
-    { name: "RIWAYAT", img: "/src/assets/imgs/Riwayat.webp" },
-    { name: "KAHANI’25", img: "/src/assets/imgs/Kahani.webp" }
+    { name: "MEIN AUR AMI", img: "./public/imgs/Mein_aur_ami.webp" },
+    { name: "ROHANI", img: "./public/imgs/Rohani.webp" },
+    { name: "AFSANA’25", img: "./public/imgs/Afsana.webp" },
+    { name: "FESTIVES", img: "./public/imgs/FESTIVE_1.webp" },
+    { name: "RIWAYAT", img: "./public/imgs/Riwayat.webp" },
+    { name: "KAHANI’25", img: "./public/imgs/Kahani.webp" }
   ];
 
   return (

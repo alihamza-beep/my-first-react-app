@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useAuth } from "../../AuthContext"; // Auth context import karna zaroori hai
 
 function Navbar() {
+  const { user, logout } = useAuth(); // User status aur logout function
+
   return (
     <>
       {/* Announcement Bar */}
@@ -22,13 +24,18 @@ function Navbar() {
           </div>
 
           <div className="d-flex align-items-center me-3">
-            <Link to="/login" className="text-dark me-3 fs-5"><i className="bi bi-person"></i></Link>
+            {/* AGAR USER LOGIN HAI TO LOGOUT BUTTON DIKHAO */}
+            {user ? (
+              <button onClick={logout} className="btn btn-sm btn-dark mx-2">LOGOUT</button>
+            ) : (
+              <Link to="/login" className="text-dark me-3 fs-5"><i className="bi bi-person"></i></Link>
+            )}
             <button className="border-0 bg-transparent fs-4"><i className="bi bi-moon"></i></button>
           </div>
         </div>
       </nav>
 
-      {/* Category Menu (Home ke baad wale items yahan hain) */}
+      {/* Category Menu */}
       <nav className="navbar navbar-expand-lg bg-white border-bottom py-2">
         <div className="container justify-content-center">
           <ul className="navbar-nav text-uppercase fw-semibold" style={{ fontSize: '12px' }}>
@@ -44,12 +51,11 @@ function Navbar() {
             <li className="nav-item mx-3">
               <Link className="nav-link text-dark" to="/about">ABOUT</Link>
             </li>
-            {/* Task 1 & 2 ke liye zaroori links [cite: 18, 19] */}
             <li className="nav-item mx-3">
-              <Link className="nav-link text-dark " to="/create">CREATE ITEM</Link>
+              <Link className="nav-link text-dark " to="/create-item">CREATE ITEM</Link>
             </li>
             <li className="nav-item mx-3">
-              <Link className="nav-link text-dark" to="/view-all">VIEW ALL ITEMS</Link>
+              <Link className="nav-link text-dark" to="/view-all-items">VIEW ALL ITEMS</Link>
             </li>
             <li className="nav-item mx-3">
               <Link className="nav-link text-dark" to="/contact">CONTACTS</Link>

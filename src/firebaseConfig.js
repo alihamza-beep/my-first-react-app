@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"; // Yeh line lazmi add karni hai
+import { getFirestore } from "firebase/firestore"; 
+import { getAuth, GoogleAuthProvider } from "firebase/auth"; // Task 1 ke liye zaroori
 
 const firebaseConfig = {
   apiKey: "AIzaSyD-jD_X2i-jzL8cff2hlpPjS4MlGAeK_y4",
@@ -13,5 +14,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firestore aur isay export karein taake pages mein use ho sakay
-export const db = getFirestore(app);
+// 1. Initialize Firestore (Database operations ke liye)
+export const db = getFirestore(app); 
+
+// 2. Initialize Auth (Email/Password, Reset Password aur Account Delete ke liye)
+export const auth = getAuth(app); 
+
+// 3. Initialize Google Provider (Google Sign-In functionality ke liye)
+export const googleProvider = new GoogleAuthProvider();

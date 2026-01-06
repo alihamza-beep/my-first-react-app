@@ -50,10 +50,10 @@ export default function Featured() {
           >
             {/* Items List */}
             {[
-              { name: 'Rozmara', img: '/src/assets/imgs/ROZMARA.avif' },
-              { name: 'KK Kids', img: '/src/assets/imgs/kids.avif' },
-              { name: 'Luxury Pret', img: '/src/assets/imgs/Luxury_Pret.avif' },
-              { name: 'Accessories', img: '/src/assets/imgs/KK_STUDIO.avif' }
+              { name: 'Rozmara', img: './public/imgs/ROZMARA.avif' },
+              { name: 'KK Kids', img: './public/imgs/kids.avif' },
+              { name: 'Luxury Pret', img: './public/imgs/Luxury_Pret.avif' },
+              { name: 'Accessories', img: './public/imgs/KK_STUDIO.avif' }
             ].map((item, index) => (
               <div key={index} className="flex-shrink-0 text-center snap-center min-w-[13rem]">
                 <img 

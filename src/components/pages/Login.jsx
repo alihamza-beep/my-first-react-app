@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from "../../AuthContext"; // Firebase auth function lene ke liye
 
 const LoginView = () => {
   const [year] = useState(new Date().getFullYear());
+  const [email, setEmail] = useState(''); // Email state
+  const [password, setPassword] = useState(''); // Password state
+  const { login } = useAuth(); // AuthContext se login function liya
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, password); // Firebase login call
+      alert("Login Successful!");
+      navigate("/"); // Login ke baad home par bhejne ke liye
+    } catch (error) {
+      console.error(error);
+      alert("Login failed: " + error.message);
+    }
+  };
 
   return (
     <div className="bg-gray-50 font-sans min-h-screen">
-      {/* 🔹 Mene yahan se Navbar aur Top Offer Bar hata diya hai kyunke wo App.jsx se aa rahe hain */}
-
       {/* Breadcrumb */}
       <div className="bg-gray-100 py-3 text-sm px-4">
         <div className="container mx-auto">
@@ -21,18 +36,32 @@ const LoginView = () => {
         <div className="bg-white shadow-lg rounded-2xl px-8 py-10 w-full max-w-md border border-gray-100">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Welcome Back</h2>
 
-          {/* Login Form */}
-          <form className="space-y-6" action="https://formspree.io/f/myznqzpg" method="POST">
+          {/* Sahi Form: Formspree hatakar Firebase ka handleSubmit lagaya */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" />
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="you@example.com" 
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" 
+              />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-              <input type="password" name="password" placeholder="••••••••" required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" />
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="••••••••" 
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" 
+              />
             </div>
 
             <div className="flex items-center justify-between text-sm text-gray-600">
@@ -64,8 +93,6 @@ const LoginView = () => {
           </p>
         </div>
       </section>
-
-      {/* 🔹 Mene yahan se Footer bhi hata diya hai kyunke wo App.jsx mein pehle se maujud hai */}
     </div>
   );
 };

@@ -1,7 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; // AuthContext ko use karna hai
 
 export default function LoginView() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login, googleLogin } = useAuth(); // Auth functions nikaale
+  const navigate = useNavigate();
+
+  // Task 1: Email & Password Sign In [cite: 17]
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate('/'); // Login ke baad home page par redirect [cite: 34]
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  };
+
+  // Task 1: Google Sign-In 
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleLogin();
+      navigate('/'); // Success par redirect
+    } catch (error) {
+      alert("Google Login Failed");
+    }
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Top Offer Bar */}
@@ -22,13 +49,14 @@ export default function LoginView() {
         <div className="bg-white shadow-lg rounded-2xl px-8 py-10 w-full max-w-md border border-gray-100">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Welcome Back</h2>
 
-          {/* Formspree Login Form */}
-          <form className="space-y-6" action="https://formspree.io/f/myznqzpg" method="POST">
+          {/* Firebase Login Form */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
               <input 
                 type="email" 
-                name="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com" 
                 required
                 className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition"
@@ -39,7 +67,8 @@ export default function LoginView() {
               <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
               <input 
                 type="password" 
-                name="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••" 
                 required
                 className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition"
@@ -48,7 +77,7 @@ export default function LoginView() {
 
             <div className="flex items-center justify-between text-sm text-gray-600">
               <label className="flex items-center cursor-pointer">
-                <input type="checkbox" name="remember" className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" />
+                <input type="checkbox" className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" />
                 <span className="ml-2">Remember me</span>
               </label>
               <Link to="/forgot-password" size="sm" className="text-black hover:underline">Forgot Password?</Link>
@@ -68,7 +97,9 @@ export default function LoginView() {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
 
+          {/* Task 1: Google Sign-In Button  */}
           <button
+            onClick={handleGoogleSignIn}
             className="w-full border border-gray-300 py-3 rounded-lg flex items-center justify-center hover:bg-gray-100 transition mb-4"
           >
             <i className="bi bi-google text-red-500 text-xl mr-2"></i> Continue with Google
