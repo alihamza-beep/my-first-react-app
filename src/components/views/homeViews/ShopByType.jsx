@@ -4,15 +4,15 @@ export default function ShopByType() {
   const types = [
     {
       name: "Prints",
-      img: "./public/imgs/Prints_1.webp",
+      img: "/imgs/Prints_1.webp",
     },
     {
       name: "Matching Separates",
-      img: "./public/imgs/Matching_Separates_1.webp",
+      img: "/imgs/Matching_Separates_1.webp",
     },
     {
       name: "Embroidered",
-      img: "./public/imgs/Embroidered.webp",
+      img: "/imgs/Embroidered.webp",
     }
   ];
 

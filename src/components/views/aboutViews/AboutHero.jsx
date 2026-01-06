@@ -5,7 +5,7 @@ export default function AboutHero() {
     <div className="relative h-[80vh]">
       {/* Video Background */}
       <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-        <source src="./public/videos/video 3.mp4" type="video/mp4" />
+        <source src="/videos/video 3.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

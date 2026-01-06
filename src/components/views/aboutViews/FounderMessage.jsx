@@ -5,7 +5,7 @@ export default function FounderMessage() {
     <div className="bg-pink-50 py-16">
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 items-center gap-10">
         <div>
-          <img src="./public/imgs/image.png" alt="Founder" className="rounded-2xl shadow-lg" />
+          <img src="/imgs/image.png" alt="Founder" className="rounded-2xl shadow-lg" />
         </div>
         <div>
           <h2 className="text-3xl font-bold mb-4 text-gray-800">Message from Our Founder</h2>

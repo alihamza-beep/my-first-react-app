@@ -8,7 +8,7 @@ export default function VideoSection() {
         {/* Left: Video */}
         <div className="w-full">
           <video 
-            src="./public/videos/video 1.mp4" 
+            src="/videos/video 1.mp4" 
             autoPlay 
             muted 
             loop 
@@ -50,7 +50,7 @@ export default function VideoSection() {
         {/* Right: Video (Isay Right side par set kar diya hai) */}
         <div className="w-full">
           <video 
-            src="./public/videos/video 2.mp4" 
+            src="/videos/video 2.mp4" 
             autoPlay 
             muted 
             loop 
