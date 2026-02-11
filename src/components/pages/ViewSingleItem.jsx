@@ -9,8 +9,8 @@ export default function ViewSingleItem() {
   const { id } = useParams(); 
   const [item, setItem] = useState(null);
   const navigate = useNavigate();
-  // 🔹 Current user aur uski role details nikaali
-  const { user, role } = useAuth();
+  // 🔹 AuthContext se current role fetch kiya
+  const { role } = useAuth();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -27,14 +27,11 @@ export default function ViewSingleItem() {
     fetchItem();
   }, [id]);
 
-  // Task 2e: Delete Operation [cite: 38, 39]
+  // Task 4: Secure CRUD Access Control - Delete Operation [cite: 35, 38]
   const handleDelete = async () => {
-    // 🔹 Security Check: Sirf Admin ya Item ka Creator hi delete kar sakay 
-    const isOwner = item?.userId === user?.uid;
-    const isAdmin = role === 'admin';
-
-    if (!(isAdmin || isOwner)) {
-      alert("Unauthorized! You don't have permission to delete this.");
+    // 🔹 Strict Security Check: Sirf Admin hi delete kar sakay [cite: 32, 38]
+    if (role !== 'admin') {
+      alert("Unauthorized! Only Admin has permission to delete items.");
       return;
     }
 
@@ -42,10 +39,11 @@ export default function ViewSingleItem() {
       try {
         await deleteDoc(doc(db, "products", id));
         alert("Deleted Successfully!");
+        // Successful delete ke baad list par wapas bhejain [cite: 34]
         navigate('/view-all-items'); 
       } catch (error) {
         console.error("Error deleting document: ", error);
-        alert("Delete failed! Rules check karein.");
+        alert("Delete failed! Database rules check karein.");
       }
     }
   };
@@ -55,15 +53,16 @@ export default function ViewSingleItem() {
   return (
     <div className="container py-5">
       <div className="card shadow-sm border-0 p-4 bg-light">
+        {/* Display Item Details [cite: 65] */}
         <h2 className="display-5 fw-bold">{item.name}</h2>
         <p className="h3 text-danger fw-bold">Rs. {item.price}</p>
         <p className="lead mt-4 text-muted">{item.description}</p>
         
         <div className="mt-5 d-flex gap-2">
-          {/* 🔹 Role-Based Visibility: Buttons sirf Admin ya Owner ko dikhengi [cite: 109] */}
-          {(role === 'admin' || item.userId === user?.uid) && (
+          {/* 🔹 ROLE RESTRICTION: Edit aur Delete sirf Admin ko dikhengi [cite: 32, 40] */}
+          {role === 'admin' && (
             <>
-              {/* Edit path [cite: 35, 36] */}
+              {/* Task 4: Admin can manage all records [cite: 38] */}
               <Link to={`/edit-item/${id}`} className="btn btn-warning px-4">
                 Edit Product
               </Link>
@@ -74,6 +73,7 @@ export default function ViewSingleItem() {
             </>
           )}
           
+          {/* Back button for all authenticated users [cite: 33] */}
           <button onClick={() => navigate('/view-all-items')} className="btn btn-secondary px-4">
             Back to List
           </button>

@@ -1,49 +1,65 @@
 /* ===============================
-   SECTION 0: RESET & GLOBAL BODY STYLES (New)
+   SECTION 0: THEME VARIABLES (PURE & CORRECT)
    =============================== */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --nav-bg: #ffffff;
+  --border-color: #dee2e6;
+}
 
-/* Default browser margin aur padding hatana zaroori hai */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --nav-bg: #1e1e1e;
+  --border-color: #333333;
+}
+
+/* ===============================
+   SECTION 1: RESET & GLOBAL BODY STYLES
+   =============================== */
 body {
-    margin: 0;
-    padding: 0;
-    /* Poori height lena taake content vertical center ho sake agar zaroorat ho */
-    min-height: 100vh; 
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden; /* Horizontal scroll khatam karne ke liye */
+
+  /* 🔥 DARK MODE APPLY HERE */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ===============================
-   SECTION 1: ROOT & MAIN CONTAINER
+   SECTION 2: ROOT & MAIN CONTAINER (FIXED FOR FULL WIDTH NAV)
    =============================== */
-
 #root {
-  /* Page ki zyada se zyada width tay karein (ye theek hai) */
-  max-width: 1280px; 
-  /* Block element ko center karne ke liye */
-  margin: 0 auto; 
-  /* Padding den */
-  padding: 2rem;
-  /* Aapke content mein jo bhi text ho (jaise h1, p, waghera) usko center karne ke liye */
-  text-align: center; 
+  /* Navbar ko poora phailne dene ke liye max-width aur padding reset */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0; 
+  text-align: center;
 }
 
-/* Yeh class kisi bhi chote section, jaise form, ko center karne ke liye use karen */
+/* Content ko center karne ke liye container use karein */
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 .container-centered {
-    /* Form ki width kam rakhi hai */
-    max-width: 500px; 
-    
-    /* Block element ko center karne ke liye sab se zaroori property */
-    margin: 0 auto; 
-    
-    padding: 20px;
-    
-    /* Center root ke bawajood, form ke andar ke text ko left align karta hai */
-    text-align: left; 
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
 }
 
 /* ===============================
-   SECTION 2: LOGO & ANIMATIONS
+   SECTION 3: LOGO & ANIMATIONS
    =============================== */
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -58,12 +74,8 @@ body {
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -73,13 +85,71 @@ body {
 }
 
 /* ===============================
-   SECTION 3: UTILITY CLASSES
+   SECTION 4: UTILITY CLASSES
    =============================== */
-
 .card {
   padding: 2em;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* ===============================
+   SECTION 5: NAVBAR & SIDEBAR (ULTRA-THIN FIX)
+   =============================== */
+.navbar {
+  z-index: 1100 !important; /* Higher z-index for dropdowns */
+  position: relative;
+  background-color: var(--nav-bg) !important;
+  border-color: var(--border-color) !important;
+  width: 100%;
+  margin: 0;
+}
+
+/* Sidebar styling for mobile drawer */
+.sidebar {
+  background-color: var(--nav-bg) !important;
+  border-right: 1px solid var(--border-color);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* ===============================
+   SECTION 6: LINKS, ICONS, INPUTS
+   =============================== */
+a,
+.nav-link,
+.navbar-brand,
+i {
+  color: var(--text-color) !important;
+  transition: color 0.3s ease;
+}
+
+/* Links hover effect */
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+/* Search bar styling */
+input.form-control {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+input.form-control::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+/* ===============================
+   SECTION 7: EXTRA ULTRA-THIN ADJUSTMENTS
+   =============================== */
+/* Laptop view ki barik patti ke liye */
+@media (min-width: 992px) {
+    .navbar-expand-lg .nav-link {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        line-height: 25px; /* image_684ec9.jpg ke mutabiq thickness */
+    }
 }
