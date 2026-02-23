@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Navigation ke liye Link import kiya
 
 export default function VideoSection() {
   return (
@@ -18,7 +19,7 @@ export default function VideoSection() {
             Your browser does not support the video tag.
           </video>
         </div>
-        {/* Right: Text */}
+        {/* Right: Text Content */}
         <div className="flex flex-col justify-center items-center text-center p-10 bg-white h-full">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter">
             VASL PRE-WINTER’25
@@ -26,15 +27,19 @@ export default function VideoSection() {
           <p className="text-gray-600 mb-6 max-w-sm">
             Step into the season with styles that speak for themselves.
           </p>
-          <button className="bg-black text-white px-10 py-3 font-semibold hover:bg-gray-800 transition">
+          {/* Button ko Link mein badal diya hai */}
+          <Link 
+            to="/new-in" 
+            className="bg-black text-white px-10 py-3 font-semibold hover:bg-gray-800 transition text-decoration-none"
+          >
             SHOP NOW
-          </button>
+          </Link>
         </div>
       </section>
 
       {/* --- Dusra Section: KHADDAR (Isay Swap kar diya hai) --- */}
       <section className="grid grid-cols-1 md:grid-cols-2 items-center">
-        {/* Left: Text Content (Desktop par left par aayega) */}
+        {/* Left: Text Content */}
         <div className="flex flex-col justify-center items-center text-center p-10 bg-[#f9f9f9] h-full">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter uppercase">
             KHADDAR
@@ -42,12 +47,16 @@ export default function VideoSection() {
           <p className="text-gray-600 mb-6 max-w-sm">
             Soft, breathable, and winter-ready—our Khaddar collection keeps you comfortable.
           </p>
-          <button className="bg-black text-white px-10 py-3 font-semibold hover:bg-gray-800 transition">
+          {/* Button ko Link mein badal diya hai */}
+          <Link 
+            to="/rozmara-rtw/khaddar" 
+            className="bg-black text-white px-10 py-3 font-semibold hover:bg-gray-800 transition text-decoration-none"
+          >
             SHOP NOW
-          </button>
+          </Link>
         </div>
         
-        {/* Right: Video (Isay Right side par set kar diya hai) */}
+        {/* Right: Video */}
         <div className="w-full">
           <video 
             src="/videos/video 2.mp4" 

@@ -80,24 +80,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Curation Links - Connected to App.jsx Routes */}
+          {/* Curation Links */}
           <div className="col-6 col-md-4 col-lg-2">
             <h6 className="nav-title">Curation</h6>
             <ul className="list-unstyled footer-nav-list">
-              <li><Link to="/women">Women's Collection</Link></li>
-              <li><Link to="/men">Men's Portfolio</Link></li>
-              <li><Link to="/luxury">Limited Edition</Link></li>
-              <li><Link to="/kids">Miniatures (Kids)</Link></li>
+              <li><Link to="/luxury-pret">Luxury Pret</Link></li>
+              <li><Link to="/rozmara-rtw">Rozmara RTW</Link></li>
+              <li><Link to="/kids">Kids Collection</Link></li>
+              <li><Link to="/accessories">Accessories</Link></li>
             </ul>
           </div>
 
-          {/* Experience Links - Connected to App.jsx Routes */}
+          {/* Experience Links - Updated with Contact & About */}
           <div className="col-6 col-md-4 col-lg-2">
             <h6 className="nav-title">Experience</h6>
             <ul className="list-unstyled footer-nav-list">
-              <li><Link to="/track">Concierge (Tracking)</Link></li>
-              <li><Link to="/assistance">Exchanges</Link></li>
+              <li><Link to="/track">Track Order</Link></li>
               <li><Link to="/assistance">Assistance</Link></li>
+              <li><Link to="/about">About Us</Link></li> {/* About Us Link Added */}
+              <li><Link to="/contact">Contact Us</Link></li> {/* Contact Us Link Added */}
               <li className="mt-4 pt-2 border-top border-light">
                 <Link to="/checkout" className="fw-black text-dark x-small tracking-widest text-decoration-none">
                   PAY ONLINE <i className="bi bi-arrow-right ms-1"></i>

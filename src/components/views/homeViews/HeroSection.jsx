@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Navigation ke liye import kiya
 
 export default function HeroSection() {
   
@@ -15,6 +16,15 @@ export default function HeroSection() {
     }
   }, []);
 
+  // Banners ka data aur unke respective paths
+  const bannerData = [
+    { src: "/imgs/banner1.webp", alt: "Banner 1", path: "/sale" },
+    { src: "/imgs/banner2.webp", alt: "Banner 2", path: "/new-in" },
+    { src: "/imgs/banner3.webp", alt: "Banner 3", path: "/luxury-pret" },
+    { src: "/imgs/banner4.webp", alt: "Banner 4", path: "/kids" },
+    { src: "/imgs/banner5.webp", alt: "Banner 5", path: "/accessories" }
+  ];
+
   return (
     <div 
       id="carouselExampleIndicators" 
@@ -24,31 +34,33 @@ export default function HeroSection() {
       
       {/* 1. Indicators (Dots) */}
       <div className="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"></button>
+        {bannerData.map((_, index) => (
+          <button 
+            key={index}
+            type="button" 
+            data-bs-target="#carouselExampleIndicators" 
+            data-bs-slide-to={index} 
+            className={index === 0 ? "active" : ""} 
+            aria-current={index === 0 ? "true" : "false"}
+          ></button>
+        ))}
       </div>
 
-      {/* 2. Carousel Images */}
+      {/* 2. Carousel Images (Wrapped in Links) */}
       <div className="carousel-inner">
-        {/* Path check karlein: /src/assets/... hamesha slash se shuru karen */}
-        <div className="carousel-item active">
-          <img src="/imgs/banner1.webp" className="d-block w-100" alt="Banner 1" />
-        </div>
-        <div className="carousel-item">
-          <img src="/imgs/banner2.webp" className="d-block w-100" alt="Banner 2" />
-        </div>
-        <div className="carousel-item">
-          <img src="/imgs/banner3.webp" className="d-block w-100" alt="Banner 3" />
-        </div>
-        <div className="carousel-item">
-          <img src="/imgs/banner4.webp" className="d-block w-100" alt="Banner 4" />
-        </div>
-        <div className="carousel-item">
-          <img src="/imgs/banner5.webp" className="d-block w-100" alt="Banner 5" />
-        </div>
+        {bannerData.map((banner, index) => (
+          <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+            {/* Click karne par page khulne ke liye Link tag use kiya */}
+            <Link to={banner.path}>
+              <img 
+                src={banner.src} 
+                className="d-block w-100" 
+                alt={banner.alt} 
+                style={{ cursor: 'pointer' }} 
+              />
+            </Link>
+          </div>
+        ))}
       </div>
 
       {/* 3. Controls (Arrows) */}
@@ -60,6 +72,14 @@ export default function HeroSection() {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
+
+      <style>{`
+        /* Hover effect ko barkarar rakha hai */
+        .carousel-item img:hover {
+          opacity: 0.9;
+          transition: 0.3s ease;
+        }
+      `}</style>
     </div>
   );
 }

@@ -1,18 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Navigation ke liye Link import kiya
 
 export default function ShopByType() {
   const types = [
     {
       name: "Prints",
       img: "/imgs/Prints_1.webp",
+      path: "/rozmara-rtw/prints" // Relevant path add kiya
     },
     {
       name: "Matching Separates",
       img: "/imgs/Matching_Separates_1.webp",
+      path: "/rozmara-rtw/solids" // Relevant path add kiya
     },
     {
       name: "Embroidered",
       img: "/imgs/Embroidered.webp",
+      path: "/rozmara-rtw/embroidered" // Relevant path add kiya
     }
   ];
 
@@ -40,9 +44,10 @@ export default function ShopByType() {
             {/* Content Section */}
             <div className="absolute bottom-8 left-0 right-0 text-center text-white">
               <h3 className="text-2xl font-bold tracking-wide mb-3">{item.name}</h3>
-              <button className="inline-block bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition uppercase text-sm tracking-widest">
+              {/* Button ko Link mein wrap kiya hai clickable banane ke liye */}
+              <Link to={item.path} className="inline-block bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition uppercase text-sm tracking-widest text-decoration-none">
                 SHOP NOW
-              </button>
+              </Link>
             </div>
           </div>
         ))}

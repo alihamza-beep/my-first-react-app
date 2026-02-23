@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Featured() {
   const scrollContainerRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
 
+  // Maine paths ko aapke menu ke mutabiq update kiya hai
   const categories = [
-    { name: 'Rozmara', img: '/imgs/ROZMARA.avif', path: '/men' },
+    { name: 'Rozmara', img: '/imgs/ROZMARA.avif', path: '/rozmara-rtw' },
     { name: 'KK Kids', img: '/imgs/kids.avif', path: '/kids' },
-    { name: 'Luxury Pret', img: '/imgs/Luxury_Pret.avif', path: '/women' },
-    { name: 'Accessories', img: '/imgs/KK_STUDIO.avif', path: '/luxury' },
+    { name: 'Luxury Pret', img: '/imgs/Luxury_Pret.avif', path: '/luxury-pret' },
+    { name: 'Accessories', img: '/imgs/KK_STUDIO.avif', path: '/accessories' },
   ];
 
   useEffect(() => {
@@ -37,7 +38,6 @@ export default function Featured() {
 
         {/* Brand Content */}
         <div className="text-center lg:text-left">
-          {/* CURATED SELECTION span removed as requested */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
             SHOP BY CATEGORY
           </h2>
@@ -45,7 +45,7 @@ export default function Featured() {
             Discover our artisanal collections designed for the modern lifestyle. Precision in every stitch, luxury in every detail.
           </p>
           <button 
-            onClick={() => navigate('/women')}
+            onClick={() => navigate('/shop-all')}
             className="inline-block border border-dark dark:border-white px-8 py-2.5 font-bold text-sm uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500"
           >
             Explore All
@@ -63,10 +63,10 @@ export default function Featured() {
             className="flex gap-6 md:gap-10 overflow-x-hidden whitespace-nowrap py-6 scroll-smooth"
           >
             {[...categories, ...categories, ...categories].map((item, index) => (
-              <div 
+              <Link 
                 key={index} 
-                onClick={() => navigate(item.path)}
-                className="inline-block flex-shrink-0 text-center group cursor-pointer"
+                to={item.path}
+                className="inline-block flex-shrink-0 text-center group cursor-pointer text-decoration-none"
               >
                 <div className="relative w-32 h-32 md:w-44 md:h-44 mx-auto overflow-hidden rounded-full border border-gray-100 dark:border-gray-800 shadow-lg bg-gray-50">
                   <img 
@@ -79,7 +79,7 @@ export default function Featured() {
                 <p className="mt-4 font-bold text-gray-800 dark:text-gray-200 text-xs md:text-sm uppercase tracking-widest">
                   {item.name}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
 
