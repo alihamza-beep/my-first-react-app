@@ -36,7 +36,7 @@ import Checkout from "./components/pages/Checkout.jsx";
 import Profile from "./components/pages/profile.jsx";
 
 // --- SALE PAGES IMPORTS ---
-import Sale from "./components/pages/Sale/sale.jsx";
+import Sale from "./components/pages/Sale/Sale.jsx";
 import ClearanceSale from "./components/pages/Sale/ClearanceSale.jsx";
 import Flat20Off from "./components/pages/Sale/Flat20Off.jsx";
 import Flat30Off from "./components/pages/Sale/Flat30Off.jsx"; 
