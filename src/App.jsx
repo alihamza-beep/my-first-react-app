@@ -44,11 +44,11 @@ import Flat50Off from "./components/pages/Sale/Flat50Off.jsx";
 import LastChance from "./components/pages/Sale/LastChance.jsx";
 
 // --- MAIN CATEGORY IMPORTS ---
-import NewIn from "./components/pages/New_In/new_in.jsx";
-import ShopAll from "./components/pages/Shop_All/shop_all.jsx";
+import NewIn from "./components/pages/New_In/New_in.jsx";
+import ShopAll from "./components/pages/Shop_All/Shop_all.jsx";
 
 // --- LUXURY PRET SUB-PAGES IMPORTS ---
-import LuxuryPret from "./components/pages/Luxury_Pret/luxury_pret.jsx";
+import LuxuryPret from "./components/pages/Luxury_Pret/Luxury_pret.jsx";
 import FestiveWear from "./components/pages/Luxury_Pret/Festive_Wear.jsx";
 import VelvetSaga from "./components/pages/Luxury_Pret/Velvet_Saga.jsx";
 import WeddingEdition from "./components/pages/Luxury_Pret/Wedding_Edition.jsx";
@@ -56,7 +56,7 @@ import Zarish from "./components/pages/Luxury_Pret/Zarish.jsx";
 import Zarqash from "./components/pages/Luxury_Pret/Zarqash.jsx";
 
 // --- ROZMARA RTW SUB-PAGES IMPORTS ---
-import RozmaraRtw from "./components/pages/Rozmara_RTW/rozmara_rtw.jsx";
+import RozmaraRtw from "./components/pages/Rozmara_RTW/Rozmara_rtw.jsx";
 import Solids from "./components/pages/Rozmara_RTW/Solids.jsx";
 import Embroidered from "./components/pages/Rozmara_RTW/Embroidered.jsx";
 import Prints from "./components/pages/Rozmara_RTW/Prints.jsx";
@@ -72,7 +72,7 @@ import SilkySmiles from "./components/pages/Kids/Silky_Smiles.jsx";
 import Tops from "./components/pages/Kids/Tops.jsx";
 
 // --- ACCESSORIES SUB-PAGES IMPORTS ---
-import Accessories from "./components/pages/Accessories/accessories.jsx";
+import Accessories from "./components/pages/Accessories/Accessories.jsx";
 import Bags from "./components/pages/Accessories/Bags.jsx";
 import Fragrances from "./components/pages/Accessories/Fragrances.jsx";
 import Jewelry from "./components/pages/Accessories/Jewelry.jsx";
