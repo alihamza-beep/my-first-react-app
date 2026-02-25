@@ -45,8 +45,8 @@ import LastChance from "./components/pages/Sale/LastChance.jsx";
 
 // --- MAIN CATEGORY IMPORTS ---
 
-import NewIn from "./components/pages/New_In/New_In.jsx";
-import ShopAll from "./components/pages/Shop_All/Shop_all.jsx";
+import NewIn from "./components/pages/New_In/New_In_Page.jsx";
+import ShopAll from "./components/pages/Shop_All/Shop_All_Page.jsx";
 
 // --- LUXURY PRET SUB-PAGES IMPORTS ---
 import LuxuryPret from "./components/pages/Luxury_Pret/Luxury_pret.jsx";
