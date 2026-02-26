@@ -57,7 +57,7 @@ import Zarish from "./components/pages/Luxury_Pret/Zarish.jsx";
 import Zarqash from "./components/pages/Luxury_Pret/Zarqash.jsx";
 
 // --- ROZMARA RTW SUB-PAGES IMPORTS ---
-import RozmaraRtw from "./components/pages/Rozmara_RTW/Rozmara_rtw.jsx";
+import RozmaraRtw from "./components/pages/Rozmara_RTW/Rozmara_RTW.jsx";
 import Solids from "./components/pages/Rozmara_RTW/Solids.jsx";
 import Embroidered from "./components/pages/Rozmara_RTW/Embroidered.jsx";
 import Prints from "./components/pages/Rozmara_RTW/Prints.jsx";
