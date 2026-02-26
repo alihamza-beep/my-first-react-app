@@ -66,7 +66,8 @@ import Khaddar from "./components/pages/Rozmara_RTW/Khaddar.jsx";
 import FusionPop from "./components/pages/Rozmara_RTW/Fusion_Pop.jsx";
 
 // --- KIDS SUB-PAGES IMPORTS ---
-import Kids from "./components/pages/Kids/kids.jsx";
+
+import Kids from "./components/pages/Kids/Kids.jsx";
 import Basics from "./components/pages/Kids/Basics.jsx";
 import EveryDay from "./components/pages/Kids/Every_Day.jsx";
 import Formals from "./components/pages/Kids/Formals.jsx";
