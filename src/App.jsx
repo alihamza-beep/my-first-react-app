@@ -178,7 +178,7 @@ function App() {
         <Route path="/shop-all" element={<ShopAll />} />
         <Route path="/new-in" element={<NewIn />} />
 
-        <Route path="/rozmara-rtw" element={<RozmaraRtw />} />
+        <Route path="/rozmara-rtw" element={<RozmaraRTW />} />
         <Route path="/rozmara-rtw/solids" element={<Solids />} />
         <Route path="/rozmara-rtw/embroidered" element={<Embroidered />} />
         <Route path="/rozmara-rtw/prints" element={<Prints />} />
